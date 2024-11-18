@@ -18,4 +18,5 @@ namespace LibrarySystemEFC.Models
         public string Passcode { get; set; }
         public ICollection<Borrowing> Borrowings { get; set; }
     }
+
 }
