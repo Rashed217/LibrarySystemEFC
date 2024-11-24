@@ -1,5 +1,4 @@
-﻿using LibrarySystemEFC.Interfaces;
-using LibrarySystemEFC.Models;
+﻿using LibrarySystemEFC.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,21 +14,21 @@ namespace LibrarySystemEFC.Repositories
 
         public CategoryRepository(LibraryContext context)
         {
-            _context = context;
+            _context = context; // Parameter for LibraryContext
         }
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<Category> GetAll() //  IEnumerable = Foreach loop
         {
             return _context.Categories.Include(c => c.Books).ToList();
         }
 
-        public Category GetByName(string name)
+        public Category GetByName(string name) // Get category by name
         {
             return _context.Categories.Include(c => c.Books)
                                       .FirstOrDefault(c => c.CName == name);
         }
 
-        public void Insert(Category category)
+        public void Insert(Category category) // Adds a new category
         {
             _context.Categories.Add(category);
             _context.SaveChanges();
@@ -37,7 +36,7 @@ namespace LibrarySystemEFC.Repositories
 
         public void UpdateByName(string name, Category updatedCategory)
         {
-            var category = GetByName(name);
+            var category = GetByName(name); // Retrieves by name
             if (category != null)
             {
                 category.CName = updatedCategory.CName;
@@ -48,7 +47,7 @@ namespace LibrarySystemEFC.Repositories
 
         public void DeleteById(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _context.Categories.Find(id); // Find category by ID
             if (category != null)
             {
                 _context.Categories.Remove(category);

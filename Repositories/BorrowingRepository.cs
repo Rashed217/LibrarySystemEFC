@@ -14,10 +14,10 @@ namespace LibrarySystemEFC.Repositories
 
         public BorrowingRepository(LibraryContext context)
         {
-            _context = context;
+            _context = context; // Parameter for LibraryContext
         }
 
-        public IEnumerable<Borrowing> GetAll()
+        public IEnumerable<Borrowing> GetAll() // IEnumerable = Foreach loop
         {
             return _context.Borrowings.Include(b => b.User).Include(b => b.Book).ToList();
         }
@@ -28,7 +28,7 @@ namespace LibrarySystemEFC.Repositories
                                       .FirstOrDefault(b => b.BorID == id);
         }
 
-        public void Insert(Borrowing borrowing)
+        public void Insert(Borrowing borrowing) // adds to the borrowing collection
         {
             _context.Borrowings.Add(borrowing);
             _context.SaveChanges();
@@ -36,7 +36,7 @@ namespace LibrarySystemEFC.Repositories
 
         public void UpdateById(int id, Borrowing updatedBorrowing)
         {
-            var borrowing = GetById(id);
+            var borrowing = GetById(id); // Retrieves borrowing by ID
             if (borrowing != null)
             {
                 borrowing.BorrowingDate = updatedBorrowing.BorrowingDate;
@@ -50,7 +50,7 @@ namespace LibrarySystemEFC.Repositories
 
         public void DeleteById(int id)
         {
-            var borrowing = _context.Borrowings.Find(id);
+            var borrowing = _context.Borrowings.Find(id); // Find book by ID
             if (borrowing != null)
             {
                 _context.Borrowings.Remove(borrowing);
@@ -60,14 +60,12 @@ namespace LibrarySystemEFC.Repositories
 
         public void ReturnBook(int borrowingId, DateTime actualReturnDate, int rating)
         {
-            var borrowing = GetById(borrowingId);
+            var borrowing = GetById(borrowingId); // Get book by ID
             if (borrowing != null && !borrowing.IsReturned)
             {
                 borrowing.ActualReturnDate = actualReturnDate;
                 borrowing.Rating = rating;
                 borrowing.IsReturned = true;
-
-                // Update book's borrowed count
                 var book = borrowing.Book;
                 book.BorrowedCopies--;
 
