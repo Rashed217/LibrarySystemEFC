@@ -11,7 +11,7 @@ namespace LibrarySystemEFC.Models
     public class Category
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //  Generate Identity in the database
         public int CID { get; set; }
         public string CName { get; set; }
         public int NumberOfBooks { get; set; }

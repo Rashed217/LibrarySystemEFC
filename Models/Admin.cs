@@ -12,7 +12,7 @@ namespace LibrarySystemEFC.Models
     {
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //  Generate Identity in the database
         public int AID { get; set; }
         public string AName { get; set; }
         public string Email { get; set; }

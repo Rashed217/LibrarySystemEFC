@@ -11,7 +11,7 @@ namespace LibrarySystemEFC.Models
     public class Borrowing
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //  Generate Identity in the database
         public int BorID { get; set; }
         public DateTime BorrowingDate { get; set; }
         public DateTime PredictedReturnDate { get; set; }

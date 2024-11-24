@@ -11,7 +11,7 @@ namespace LibrarySystemEFC.Models
     public class User
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //  Generate Identity in the database
         public int UID { get; set; }
         public string UName { get; set; }
         public string Gender { get; set; }

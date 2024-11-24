@@ -11,7 +11,7 @@ namespace LibrarySystemEFC.Models
     public class Book
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //  Generate Identity in the database
         public int BID { get; set; }
         public string BName { get; set; }
         public string Author { get; set; }
